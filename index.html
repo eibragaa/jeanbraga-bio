@@ -3,288 +3,508 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>@jeanbraga.ai</title>
-  <meta name="description" content="Jean Braga — AI & Automation">
+  <title>Jean Braga · @jeanbraga.ai</title>
+  <meta name="description" content="Jean Braga — AI & Automation · Homelab">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      background: #0a0a0f;
-      color: #e2e8f0;
+      background: #07080D;
+      color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      -webkit-font-smoothing: antialiased;
     }
     .container {
       width: 100%;
-      max-width: 420px;
-      padding: 40px 24px;
+      max-width: 430px;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
-    /* Profile */
-    .avatar {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #60A5FA, #3B82F6, #8B5CF6);
-      padding: 3px;
+
+    /* ===== HEADER ===== */
+    .header {
+      width: 100%;
+      background: linear-gradient(135deg, #1A0F3E 0%, #2D1B69 50%, #1A0F3E 100%);
+      padding: 48px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .greeting {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 4px;
+    }
+    .header-title {
+      font-size: 22px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 60%, #C4B5FD);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ===== PHOTO ===== */
+    .photo-wrapper {
+      margin-top: -44px;
       margin-bottom: 16px;
+      z-index: 2;
     }
-    .avatar-inner {
+    .photo-ring {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8B5CF6, #EC4899);
+      padding: 3px;
+      box-shadow: 0 0 25px rgba(139,92,246,0.25);
+    }
+    .photo-inner {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: #0a0a0f;
+      background: #18182A;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      font-weight: 800;
-      color: #60A5FA;
+      font-size: 36px;
+      font-weight: 700;
+      color: #C4B5FD;
+      overflow: hidden;
     }
-    h1 {
+    .photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* ===== PROFILE ===== */
+    .profile-info {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 0 24px;
+    }
+    .profile-name {
       font-size: 20px;
       font-weight: 700;
-      color: #f1f5f9;
-      margin-bottom: 4px;
+      color: #F1F5F9;
+      margin-bottom: 2px;
     }
-    .handle {
-      font-size: 14px;
-      color: #60A5FA;
+    .profile-handle {
+      font-size: 13px;
+      color: #A78BFA;
       font-weight: 500;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
-    .bio {
-      font-size: 14px;
-      color: #94a3b8;
-      text-align: center;
-      line-height: 1.6;
-      margin-bottom: 32px;
+    .profile-bio {
+      font-size: 13.5px;
+      color: #94A3B8;
+      line-height: 1.5;
+    }
+    .profile-bio span { color: #A78BFA; }
+
+    /* ===== STATS ===== */
+    .stats-row {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      margin-bottom: 24px;
+      width: 100%;
+      padding: 0 24px;
+    }
+    .stat-item { text-align: center; }
+    .stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: #F1F5F9;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #64748B;
+      margin-top: 2px;
       font-weight: 400;
     }
-    /* Links */
-    .links {
+
+    /* ===== DIVIDER ===== */
+    .divider {
       width: 100%;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .divider-line { flex: 1; height: 1px; opacity: 0.5; }
+    .divider-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      white-space: nowrap;
+    }
+    .divider-line.dl-purple { background: linear-gradient(90deg, transparent, rgba(139,92,246,0.35), transparent); }
+
+    /* ===== ICON GRID ===== */
+    .icon-grid {
+      width: 100%;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .icon-item {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 32px;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #94A3B8;
+    }
+    .icon-circle {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: transform 0.2s;
+      background: rgba(255,255,255,0.06);
+    }
+    .icon-item:active .icon-circle { transform: scale(0.9); }
+    .icon-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #64748B;
+    }
+    .ic-pink { background: #fce8ec; color: #D4567A; }
+    .ic-peach { background: #fdeee6; color: #E8895A; }
+    .ic-lavender { background: #eeeafc; color: #8B5CF6; }
+    .ic-mint { background: #e8f5ed; color: #2EAF6E; }
+    .ic-sky { background: #e3f0fd; color: #3B82F6; }
+    .ic-rose { background: #fde4ed; color: #EC4899; }
+
+    /* ===== LINKS ===== */
+    .links {
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
     }
     .link-card {
       display: flex;
       align-items: center;
-      padding: 16px 20px;
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(59, 130, 246, 0.15);
+      padding: 15px 18px;
       border-radius: 14px;
       text-decoration: none;
-      color: #e2e8f0;
-      transition: all 0.25s ease;
-      position: relative;
-      overflow: hidden;
+      color: #E2E8F0;
+      transition: all 0.2s;
+      border: 1px solid transparent;
     }
-    .link-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(96, 165, 250, 0.08), rgba(139, 92, 246, 0.05));
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-    .link-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(59, 130, 246, 0.4);
-      background: rgba(30, 41, 59, 0.8);
-    }
-    .link-card:hover::before { opacity: 1; }
     .link-card:active { transform: scale(0.98); }
-    .link-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+
+    .lc-crimson {
+      background: linear-gradient(135deg, #7a0019 0%, #550010 100%);
+      border-color: rgba(255,255,255,0.06);
+    }
+    .lc-navy {
+      background: linear-gradient(135deg, #0e1629 0%, #1a253b 100%);
+      border-color: rgba(255,255,255,0.05);
+    }
+    .lc-dark {
+      background: linear-gradient(135deg, #111118 0%, #191924 100%);
+      border-color: rgba(255,255,255,0.04);
+    }
+    .lc-purple {
+      background: linear-gradient(135deg, #2A1860 0%, #452582 100%);
+      border-color: rgba(139,92,246,0.12);
+    }
+    .lc-gold {
+      background: linear-gradient(135deg, #3D2B00 0%, #5C4000 100%);
+      border-color: rgba(255,215,0,0.08);
+    }
+
+    .l-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
       margin-right: 14px;
       flex-shrink: 0;
+      background: rgba(255,255,255,0.08);
     }
-    .link-content { flex: 1; z-index: 1; }
-    .link-title {
-      font-size: 15px;
+    .l-body { flex: 1; min-width: 0; }
+    .l-title {
+      font-size: 14px;
       font-weight: 600;
-      color: #f1f5f9;
-      margin-bottom: 2px;
+      color: #F1F5F9;
+      margin-bottom: 1px;
     }
-    .link-desc {
-      font-size: 12px;
-      color: #64748b;
+    .l-desc {
+      font-size: 11.5px;
+      color: rgba(148,163,184,0.75);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
-    .link-arrow {
-      font-size: 18px;
-      color: #475569;
-      transition: transform 0.25s ease;
-      z-index: 1;
+    .l-arrow {
+      font-size: 16px;
+      color: rgba(148,163,184,0.3);
+      margin-left: 8px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
     }
-    .link-card:hover .link-arrow {
-      transform: translateX(4px);
-      color: #60A5FA;
+    .link-card:hover .l-arrow {
+      color: rgba(255,255,255,0.5);
+      transform: translateX(3px);
     }
-    /* Icon colors */
-    .icon-d5n { background: linear-gradient(135deg, #60A5FA20, #3B82F620); color: #60A5FA; }
-    .icon-github { background: rgba(148, 163, 184, 0.1); color: #94a3b8; }
-    .icon-x { background: rgba(59, 130, 246, 0.1); color: #60A5FA; }
-    .icon-youtube { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-    .icon-discord { background: rgba(88, 101, 242, 0.1); color: #5865f2; }
-    .icon-site { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
-    .icon-bot { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
-    .icon-projects { background: rgba(251, 191, 36, 0.1); color: #fbbf24; }
-    /* Divider */
-    .divider {
+
+    /* ===== GALLERY ===== */
+    .gallery {
       width: 100%;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .g-item {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      background: #151525;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
+      justify-content: center;
+      font-size: 30px;
     }
-    .divider-line { flex: 1; height: 1px; background: rgba(59, 130, 246, 0.15); }
-    .divider-text {
-      font-size: 11px;
-      font-weight: 600;
-      color: #475569;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .g-item.wide {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
     }
-    /* Footer */
+
+    /* ===== FOOTER ===== */
     .footer {
-      padding: 24px 0;
+      width: 100%;
+      padding: 16px 24px 8px;
       text-align: center;
     }
-    .footer p {
-      font-size: 12px;
-      color: #334155;
+    .footer p { font-size: 11px; color: #334155; letter-spacing: 0.3px; }
+
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      width: 100%;
+      max-width: 430px;
+      background: #0A0B12;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 8px 20px;
+      padding-bottom: max(8px, env(safe-area-inset-bottom));
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: auto;
     }
-    .glow {
-      position: fixed;
-      width: 400px;
-      height: 400px;
+    .bn-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 10px;
+      color: #475569;
+      text-decoration: none;
+    }
+    .bn-item.active { color: #A78BFA; }
+    .bn-icon { font-size: 22px; line-height: 1; }
+    .bn-label { font-size: 9px; font-weight: 500; }
+    .bn-item.active .bn-icon { color: #8B5CF6; }
+    .bn-center {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: -1;
+      background: linear-gradient(135deg, #8B5CF6, #EC4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #fff;
+      margin-top: -16px;
+      box-shadow: 0 0 20px rgba(139,92,246,0.3);
     }
-    .glow-1 {
-      top: -200px;
-      right: -100px;
-      background: #60A5FA;
-    }
-    .glow-2 {
-      bottom: -200px;
-      left: -100px;
-      background: #8B5CF6;
-    }
-    @media (max-width: 480px) {
-      .container { padding: 32px 20px; }
-      .avatar { width: 80px; height: 80px; }
-      .avatar-inner { font-size: 28px; }
+
+    @media (max-width: 430px) {
+      .container { max-width: 100%; }
+      .bottom-nav { max-width: 100%; }
     }
   </style>
 </head>
 <body>
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
 
-  <div class="container">
-    <!-- Avatar -->
-    <div class="avatar">
-      <div class="avatar-inner">JB</div>
-    </div>
+<div class="container">
 
-    <!-- Name -->
-    <h1>Jean Braga</h1>
-    <div class="handle">@jeanbraga.ai</div>
-    <div class="bio">
-      AI & Automation · Homelab · <br>Drop Five News
-    </div>
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="greeting">✨ Olá, bem-vindo(a)!</div>
+    <div class="header-title">jeanbraga.ai</div>
+  </div>
 
-    <!-- Main Links -->
-    <div class="links">
-      <a href="https://jeanbraga.netlify.app" target="_blank" rel="noopener" class="link-card">
-        <div class="link-icon icon-d5n">📡</div>
-        <div class="link-content">
-          <div class="link-title">Drop Five News</div>
-          <div class="link-desc">O resumo do dia, SEG A SEX • 05:00</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="https://github.com/eibragaa" target="_blank" rel="noopener" class="link-card">
-        <div class="link-icon icon-github">⌘</div>
-        <div class="link-content">
-          <div class="link-title">GitHub</div>
-          <div class="link-desc">Projetos, automações e código aberto</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="https://x.com/jeanbraga_ai" target="_blank" rel="noopener" class="link-card">
-        <div class="link-icon icon-x">𝕏</div>
-        <div class="link-content">
-          <div class="link-title">X / Twitter</div>
-          <div class="link-desc">IA, automação e insights</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-    </div>
-
-    <div class="divider">
-      <div class="divider-line"></div>
-      <span class="divider-text">Projetos</span>
-      <div class="divider-line"></div>
-    </div>
-
-    <div class="links">
-      <a href="https://github.com/eibragaa" target="_blank" rel="noopener" class="link-card">
-        <div class="link-icon icon-projects">🤖</div>
-        <div class="link-content">
-          <div class="link-title">Hermes Agent</div>
-          <div class="link-desc">Agente AI autônomo 24/7 no homelab</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="https://github.com/eibragaa" target="_blank" rel="noopener" class="link-card">
-        <div class="link-icon icon-bot">📈</div>
-        <div class="link-content">
-          <div class="link-title">GitHub Intelligence Scout</div>
-          <div class="link-desc">Curadoria automática de projetos</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="https://github.com/eibragaa" target="_blank" rel="noopener" class="link-card">
-        <div class="link-icon icon-site">🔧</div>
-        <div class="link-content">
-          <div class="link-title">Homelab</div>
-          <div class="link-desc">Servidor, zram, Docker, automação</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>jeanbraga.ai — 2026</p>
+  <!-- ===== PHOTO ===== -->
+  <div class="photo-wrapper">
+    <div class="photo-ring">
+      <div class="photo-inner">JB</div>
     </div>
   </div>
+
+  <!-- ===== PROFILE ===== -->
+  <div class="profile-info">
+    <div class="profile-name">Jean Braga</div>
+    <div class="profile-handle">@jeanbraga.ai</div>
+    <div class="profile-bio">
+      AI · Automação · <span>Homelab</span><br>
+      Drop Five News · 24/7
+    </div>
+  </div>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-value">50+</div>
+      <div class="stat-label">Projetos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">24/7</div>
+      <div class="stat-label">Online</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">∞</div>
+      <div class="stat-label">Automação</div>
+    </div>
+  </div>
+
+  <!-- ===== ICON GRID ===== -->
+  <div class="icon-grid">
+    <a href="#" class="icon-item">
+      <div class="icon-circle ic-pink">🎙️</div>
+      <span class="icon-label">Podcast</span>
+    </a>
+    <a href="#" class="icon-item">
+      <div class="icon-circle ic-peach">🤖</div>
+      <span class="icon-label">IA</span>
+    </a>
+    <a href="#" class="icon-item">
+      <div class="icon-circle ic-lavender">⚡</div>
+      <span class="icon-label">Dev</span>
+    </a>
+    <a href="#" class="icon-item">
+      <div class="icon-circle ic-mint">🔧</div>
+      <span class="icon-label">Lab</span>
+    </a>
+  </div>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="divider">
+    <div class="divider-line dl-purple"></div>
+    <span class="divider-text">📌 Principais</span>
+    <div class="divider-line dl-purple"></div>
+  </div>
+
+  <!-- ===== LINKS ===== -->
+  <div class="links">
+    <a href="#" class="link-card lc-crimson">
+      <div class="l-icon">🎙️</div>
+      <div class="l-body">
+        <div class="l-title">Drop Five News</div>
+        <div class="l-desc">O resumo do dia · Seg a Sex 05:00</div>
+      </div>
+      <span class="l-arrow">→</span>
+    </a>
+
+    <a href="#" class="link-card lc-navy">
+      <div class="l-icon">⌘</div>
+      <div class="l-body">
+        <div class="l-title">GitHub</div>
+        <div class="l-desc">Código aberto · Automações</div>
+      </div>
+      <span class="l-arrow">→</span>
+    </a>
+
+    <a href="#" class="link-card lc-dark">
+      <div class="l-icon">𝕏</div>
+      <div class="l-body">
+        <div class="l-title">X / Twitter</div>
+        <div class="l-desc">IA, automação e insights</div>
+      </div>
+      <span class="l-arrow">→</span>
+    </a>
+
+    <a href="#" class="link-card lc-purple">
+      <div class="l-icon">📬</div>
+      <div class="l-body">
+        <div class="l-title">Newsletter</div>
+        <div class="l-desc">Atualizações semanais</div>
+      </div>
+      <span class="l-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="divider">
+    <div class="divider-line dl-purple"></div>
+    <span class="divider-text">🛒 Projetos</span>
+    <div class="divider-line dl-purple"></div>
+  </div>
+
+  <!-- ===== GALLERY ===== -->
+  <div class="gallery">
+    <div class="g-item">🤖</div>
+    <div class="g-item">📊</div>
+    <div class="g-item wide">⚡</div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <p>© 2026 · jeanbraga.ai</p>
+  </div>
+
+</div>
+
+<!-- ===== BOTTOM NAV ===== -->
+<div class="bottom-nav">
+  <a href="#" class="bn-item active">
+    <span class="bn-icon">🏠</span>
+    <span class="bn-label">Início</span>
+  </a>
+  <a href="#" class="bn-item">
+    <span class="bn-icon">🔍</span>
+    <span class="bn-label">Buscar</span>
+  </a>
+  <a href="#" class="bn-item">
+    <div class="bn-center">✦</div>
+  </a>
+  <a href="#" class="bn-item">
+    <span class="bn-icon">♥</span>
+    <span class="bn-label">Salvos</span>
+  </a>
+  <a href="#" class="bn-item">
+    <span class="bn-icon">👤</span>
+    <span class="bn-label">Perfil</span>
+  </a>
+</div>
+
 </body>
 </html>
