@@ -28,7 +28,6 @@
       padding: 0;
     }
 
-    /* ===== MINIMAL HEADER BAR ===== */
     .top-bar {
       width: 100%;
       padding: 16px 24px 8px;
@@ -37,14 +36,8 @@
       align-items: center;
       font-size: 12px;
       color: #666;
-      letter-spacing: 0.5px;
-    }
-    .top-bar span:last-child {
-      font-size: 10px;
-      opacity: 0.6;
     }
 
-    /* ===== ACCENT LINE ===== */
     .accent-line {
       width: 36px;
       height: 3px;
@@ -55,7 +48,6 @@
       margin-left: 24px;
     }
 
-    /* ===== PHOTO ===== */
     .photo-wrap {
       width: 100%;
       padding: 0 24px;
@@ -65,13 +57,11 @@
       width: 100%;
       aspect-ratio: 1.1/1;
       border-radius: 18px;
-      background: linear-gradient(135deg, #2a2a2a, #1a1a2a);
+      background: #2a2a2a;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 56px;
-      color: #555;
-      overflow: hidden;
     }
     .photo-img img {
       width: 100%;
@@ -79,8 +69,17 @@
       object-fit: cover;
       border-radius: 18px;
     }
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      color: #555;
+      background: linear-gradient(135deg, #2a2a2a, #1a1a2e);
+    }
 
-    /* ===== PROFILE ===== */
     .profile {
       width: 100%;
       padding: 0 24px;
@@ -106,7 +105,6 @@
       font-weight: 400;
     }
 
-    /* ===== NAV LINKS ROW ===== */
     .nav-row {
       width: 100%;
       padding: 0 24px;
@@ -123,14 +121,8 @@
       font-weight: 500;
       transition: color 0.2s;
     }
-    .nav-row a.active {
-      color: #D1D5DB;
-    }
-    .nav-row a:hover {
-      color: #9CA3AF;
-    }
+    .nav-row a.active { color: #D1D5DB; }
 
-    /* ===== CARDS ===== */
     .cards {
       width: 100%;
       padding: 0 24px;
@@ -147,16 +139,12 @@
       text-decoration: none;
       color: #D1D5DB;
       background: #1C1C1E;
-      border: 1px solid transparent;
+      border: 1px solid rgba(255,255,255,0.03);
       transition: all 0.2s;
     }
-    .card:active {
-      transform: scale(0.98);
-      background: #222;
-    }
+    .card:active { transform: scale(0.98); background: #222; }
     .card-icon {
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       border-radius: 50%;
       background: #24242A;
       display: flex;
@@ -167,10 +155,7 @@
       flex-shrink: 0;
       color: #9CA3AF;
     }
-    .card-body {
-      flex: 1;
-      min-width: 0;
-    }
+    .card-body { flex: 1; min-width: 0; }
     .card-title {
       font-size: 14px;
       font-weight: 500;
@@ -189,14 +174,13 @@
       color: #4B5563;
       margin-left: 8px;
       flex-shrink: 0;
-      transition: transform 0.2s;
+      transition: all 0.2s;
     }
     .card:hover .card-arrow {
       transform: translateX(3px);
       color: #9CA3AF;
     }
 
-    /* ===== SECTION TITLE ===== */
     .section-title {
       width: 100%;
       padding: 0 24px;
@@ -207,7 +191,6 @@
       margin-bottom: 8px;
     }
 
-    /* ===== GRID CARDS ===== */
     .grid-2 {
       width: 100%;
       padding: 0 24px;
@@ -217,7 +200,7 @@
       margin-bottom: 20px;
     }
     .grid-card {
-      padding: 18px 16px;
+      padding: 20px 16px;
       border-radius: 14px;
       background: #1C1C1E;
       text-decoration: none;
@@ -228,21 +211,10 @@
       gap: 8px;
       transition: all 0.2s;
     }
-    .grid-card:active {
-      transform: scale(0.97);
-      background: #222;
-    }
-    .grid-card-icon {
-      font-size: 28px;
-      opacity: 0.7;
-    }
-    .grid-card-label {
-      font-size: 12px;
-      color: #9CA3AF;
-      font-weight: 500;
-    }
+    .grid-card:active { transform: scale(0.97); background: #222; }
+    .grid-card-icon { font-size: 28px; opacity: 0.7; }
+    .grid-card-label { font-size: 12px; color: #9CA3AF; font-weight: 500; }
 
-    /* ===== PHOTO STRIP ===== */
     .photo-strip {
       width: 100%;
       padding: 0 24px;
@@ -265,20 +237,14 @@
       aspect-ratio: 2.3/1;
     }
 
-    /* ===== FOOTER ===== */
     .footer {
       width: 100%;
       padding: 16px 24px 24px;
       text-align: center;
     }
-    .footer p {
-      font-size: 11px;
-      color: #333;
-      letter-spacing: 0.5px;
-    }
+    .footer p { font-size: 11px; color: #333; letter-spacing: 0.5px; }
     .footer-divider {
-      width: 60px;
-      height: 3px;
+      width: 60px; height: 3px;
       background: #222;
       border-radius: 2px;
       margin: 0 auto 12px;
@@ -293,33 +259,28 @@
 
 <div class="container">
 
-  <!-- ===== TOP BAR ===== -->
   <div class="top-bar">
     <span>9:41</span>
     <span>📶 🔋</span>
   </div>
 
-  <!-- ===== ACCENT LINE ===== -->
   <div class="accent-line"></div>
 
-  <!-- ===== PHOTO ===== -->
   <div class="photo-wrap">
     <div class="photo-img">
-      JB
+      <div class="photo-placeholder">📸</div>
     </div>
   </div>
 
-  <!-- ===== PROFILE ===== -->
   <div class="profile">
     <div class="profile-name">Jean Braga</div>
-    <div class="profile-handle">@jeanbraga.ai</div>
+    <div class="profile-handle">@jeanbraga.IA</div>
     <div class="profile-bio">
       Automação · AI · Homelab<br>
       Criando o futuro 24/7
     </div>
   </div>
 
-  <!-- ===== NAV ROW ===== -->
   <div class="nav-row">
     <a href="#" class="active">Início</a>
     <a href="#">Projetos</a>
@@ -327,7 +288,6 @@
     <a href="#">Sobre</a>
   </div>
 
-  <!-- ===== CARDS ===== -->
   <div class="section-title">📍 Destaques</div>
 
   <div class="cards">
@@ -339,7 +299,6 @@
       </div>
       <span class="card-arrow">→</span>
     </a>
-
     <a href="#" class="card">
       <div class="card-icon">⌘</div>
       <div class="card-body">
@@ -348,7 +307,6 @@
       </div>
       <span class="card-arrow">→</span>
     </a>
-
     <a href="#" class="card">
       <div class="card-icon">𝕏</div>
       <div class="card-body">
@@ -357,7 +315,6 @@
       </div>
       <span class="card-arrow">→</span>
     </a>
-
     <a href="#" class="card">
       <div class="card-icon">📬</div>
       <div class="card-body">
@@ -368,7 +325,6 @@
     </a>
   </div>
 
-  <!-- ===== SECTION ===== -->
   <div class="section-title">🛠️ Projetos</div>
 
   <div class="grid-2">
@@ -382,17 +338,15 @@
     </a>
   </div>
 
-  <!-- ===== PHOTO STRIP ===== -->
   <div class="photo-strip">
     <div class="strip-item">📡</div>
     <div class="strip-item">⚡</div>
     <div class="strip-item wide">🔧</div>
   </div>
 
-  <!-- ===== FOOTER ===== -->
   <div class="footer">
     <div class="footer-divider"></div>
-    <p>© 2026 · jeanbraga.ai</p>
+    <p>© 2026 · jeanbraga.IA</p>
   </div>
 
 </div>
